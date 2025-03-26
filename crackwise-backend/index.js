@@ -5,6 +5,7 @@ const cors = require("cors");
 
 const authRoutes = require("./src/routes/authRoutes");
 const profileRoutes = require("./src/routes/profileRoutes");
+const questionRoutes = require("./src/routes/questionRoutes");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -14,6 +15,7 @@ app.use(cors());
 // Routes
 app.use("/auth", authRoutes);
 app.use("/profile", profileRoutes);
+app.use("/questions", questionRoutes); 
 app.get("/", (req, res) => {
     res.send("Crackwise Backend is Running...");
 });
