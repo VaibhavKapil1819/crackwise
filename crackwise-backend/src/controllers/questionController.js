@@ -26,46 +26,56 @@ exports.createQuestion = async (req, res) => {
 // 🔹 Get All Coding Questions
 exports.getAllQuestions = async (req, res) => {
     try {
+        console.log("📌 Fetching all questions...");
+
         const { data, error } = await supabase.from("coding_questions").select("*");
+
+        console.log("🛠 Supabase Response:", data, error); // Debugging log
 
         if (error) throw error;
 
         res.status(200).json({ questions: data });
     } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: "Internal Server Error" });
+        console.error("🔥 Internal Server Error:", err);
+        res.status(500).json({ error: "Internal Server Error", details: err.message });
     }
 };
 
-// 🔹 Get a Single Coding Question by ID
 exports.getQuestionById = async (req, res) => {
     try {
-        const { id } = req.params;
+        let { id } = req.params;
 
-        // ✅ Debugging: Log the received ID
-        console.log("Received ID:", id);
+        console.log("📌 Received ID from Request:", id); // Debugging log
+
+        // Ensure the ID is a valid UUID format
+        const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+        if (!uuidRegex.test(id)) {
+            return res.status(400).json({ error: "Invalid UUID format" });
+        }
+
+        console.log("🔍 Querying Supabase with UUID:", id);
 
         const { data, error } = await supabase
             .from("coding_questions")
             .select("*")
-            .eq("id", id)
-            .maybeSingle(); // ✅ Changed to `maybeSingle()`
+            .eq("id", id)  // ✅ UUID should be passed as a string
+            .maybeSingle();
 
-        // ✅ Debugging: Log the result from Supabase
-        console.log("Supabase Response:", data, error);
+        console.log("🛠 Supabase Response:", data, error); // Debugging log
 
         if (error) {
-            console.error("Supabase Error:", error);
+            console.error("❌ Supabase Error:", error);
             return res.status(400).json({ error: error.message });
         }
 
         if (!data) {
+            console.warn("⚠️ Question not found!");
             return res.status(404).json({ error: "Question not found" });
         }
 
         res.status(200).json({ question: data });
     } catch (err) {
-        console.error("Internal Server Error:", err);
+        console.error("🔥 Internal Server Error:", err);
         res.status(500).json({ error: "Internal Server Error", details: err.message });
     }
 };
