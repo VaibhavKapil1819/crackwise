@@ -4,7 +4,7 @@ const questionController = require("../controllers/questionController");
 
 
 // Define routes (No JWT authentication)
-router.get("get/{all}", questionController.getAllQuestions);
+router.get("/all", questionController.getAllQuestions);
 router.post("/create", questionController.createQuestion);
 router.get("/:id", questionController.getQuestionById);
 

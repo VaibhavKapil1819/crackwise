@@ -1,19 +1,22 @@
-// App.js
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LoginPage from './pages/login';  // Importing LoginPage component
-import Dashboard from './pages/Dashboard';
-import './App.css';  // Import your custom styles
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LoginPage from "./pages/login";
+import Dashboard from "./pages/Dashboard";
+import QuestionPage from "./pages/QuestionPage"; // ✅ New Page for coding editor
+import "./App.css";
 
 function App() {
   return (
     <Router>
       <Routes>
-        {/* Define the route for Login Page */}
+        {/* Login Page */}
         <Route path="/" element={<LoginPage />} />
-        
-        {/* Define the route for Dashboard Page */}
+
+        {/* Dashboard Page (Displays all questions) */}
         <Route path="/dashboard" element={<Dashboard />} />
+
+        {/* Question Page (Displays a single question + editor) */}
+        <Route path="/question/:id" element={<QuestionPage />} />
       </Routes>
     </Router>
   );

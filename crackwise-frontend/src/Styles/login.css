@@ -1,57 +1,126 @@
-/* Add this to your CSS file to style the login page */
-body{
-    background-image: url('../assets/landingpage.jpg');;
-    background-color: #0056b3;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100vh;
+/* Login Page Styles */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f5f7fa;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-.login-container {
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f7f7f7;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 32px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.auth-header h2 {
+  margin: 0 0 8px 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.auth-header p {
+  margin: 0;
+  font-size: 14px;
+  color: #4a5568;
+}
+
+.auth-form {
+  margin-bottom: 24px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #2d3748;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #1a56db;
+}
+
+.auth-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #1a56db;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.auth-button:hover {
+  background-color: #1548b3;
+}
+
+.auth-button:disabled {
+  background-color: #a0aec0;
+  cursor: not-allowed;
+}
+
+.auth-error {
+  padding: 12px;
+  margin-bottom: 16px;
+  background-color: #fef2f2;
+  color: #991b1b;
+  border-radius: 6px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.auth-footer {
+  text-align: center;
+  font-size: 14px;
+  color: #4a5568;
+}
+
+.auth-footer a {
+  color: #1a56db;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.auth-footer a:hover {
+  text-decoration: underline;
+}
+
+.auth-footer p {
+  margin: 8px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 24px;
+    margin: 16px;
   }
-  
-  h2 {
-    text-align: center;
-    color: #333;
-  }
-  
-  .input-container {
-    margin-bottom: 15px;
-  }
-  
-  input {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    border: none;
-    border-radius: 4px;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  .error {
-    color: red;
-    font-size: 14px;
-    margin-bottom: 10px;
-  }
-  
+}
