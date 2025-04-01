@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
+import loginService from '../Services/loginservice';
 import '../Styles/login.css';
 
 const LoginPage = () => {
@@ -22,14 +23,11 @@ const LoginPage = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/login', {
-        email,
-        password
-      });
-
-      if (response.data.success) {
+      const response = await loginService(email, password);
+      if (response.status===200) {
+        
+        setError('');
         // Store token in localStorage or context
-        localStorage.setItem('authToken', response.data.token);
         navigate('/dashboard');
       } else {
         setError(response.data.message || 'Invalid credentials');
