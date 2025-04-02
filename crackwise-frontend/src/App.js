@@ -4,6 +4,7 @@ import LoginPage from "./pages/login";
 import Dashboard from "./pages/Dashboard";
 import QuestionPage from "./pages/QuestionPage"; // ✅ New Page for coding editor
 import "./App.css";
+import EssayScorer from "./pages/essay";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
 
         {/* Dashboard Page (Displays all questions) */}
         <Route path="/dashboard" element={<Dashboard />} />
-
+        <Route path="/essay" element={<EssayScorer />} />
         {/* Question Page (Displays a single question + editor) */}
         <Route path="/question/:id" element={<QuestionPage />} />
       </Routes>
